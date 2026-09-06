@@ -2,6 +2,7 @@ import { ArrowRight, Calendar, CheckCircle, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { BUDGET_OPTIONS, TRAVELER_OPTIONS } from "../assets/data";
 import { toast } from "sonner";
+import { generateTripWithAI } from "../services/aiModel";
 const CreateTrip = () => {
   const [step, setStep] = useState(3);
   const [loading, setLoading] = useState(false);
@@ -26,7 +27,7 @@ const CreateTrip = () => {
     }
   };
 
-  const generateTrip = () => {
+  const generateTrip = async () => {
     if (
       !formData.destination ||
       !formData.noOfDays ||
@@ -41,7 +42,21 @@ const CreateTrip = () => {
     }
 
     setLoading(true);
-    console.log(formData);
+
+    const DYNAMIC_PROMPT = `Tạo một kế hoạch du lịch cho Địa điểm: ${formData?.destination} trong ${formData?.noOfDays} ngày dành cho khách du lịch loại ${formData?.traveler} với ngân sách ${formData?.budget}. Trả về kết quả nghiêm ngặt dưới dạng một đối tượng JSON duy nhất, sử dụng các khóa dạng camelCase. Kế hoạch du lịch phải có ghi chú chuyến đi (trip note) và bắt buộc phải chứa mảng hotelsOptions, mỗi khách sạn gồm hotelName, hotelAddress, priceRange, imageUrl, rating, description và coordinates, cùng với một mảng itinerary gồm các kế hoạch theo từng ngày. Mỗi ngày phải bao gồm dayNumber, theme và một mảng activities, trong đó mỗi hoạt động chứa activityName, description, imageUrl, ticketPrice, timeRange, timeToTravel và coordinates`;
+
+    try {
+      const tripData = await generateTripWithAI(DYNAMIC_PROMPT);
+      console.log(tripData);
+    } catch (error) {
+      setLoading(false);
+      console.log("AI error:", error);
+      toast.error(
+        error.message?.includes("429")
+          ? "Đã đạt giới hạn tốc độ! Vui lòng chờ 60 giây."
+          : "Bị lỗi."
+      );
+    }
   };
 
   if (loading) {
