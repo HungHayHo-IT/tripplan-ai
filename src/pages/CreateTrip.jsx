@@ -1,5 +1,5 @@
 import { ArrowRight, Calendar, CheckCircle, Loader2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BUDGET_OPTIONS, TRAVELER_OPTIONS } from "../assets/data";
 import { toast } from "sonner";
 const CreateTrip = () => {
