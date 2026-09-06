@@ -1,7 +1,16 @@
-// import React from "react";  ← xóa dòng này
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/shared/Header";
+import Home from "./pages/Home";
 
 const App = () => {
-  return <></>;
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </>
+  );
 };
 
 export default App;
