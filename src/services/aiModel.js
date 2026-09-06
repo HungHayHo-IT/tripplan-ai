@@ -189,6 +189,7 @@ export async function generateTripWithAI(DYNAMIC_PROMPT) {
     const textResponse = result.response.text();
 
     const cleanJson = textResponse.replace(/```json|```/g, "").trim();
+    console.log(cleanJson);
   } catch (error) {
     console.error("Error generating trip: ", error);
     throw error;
