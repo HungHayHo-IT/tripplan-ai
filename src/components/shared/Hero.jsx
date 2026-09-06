@@ -1,8 +1,10 @@
 import { Button } from "../ui/button";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { DollarSign, Heart, Plane } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="min-h-screen relative overflow-hidden bg-linear-to-br from-indigo-50 to-blue-100 flexCenter py-22">
       {/* Decorative Blobs */}
@@ -28,6 +30,7 @@ const Hero = () => {
           perfect itinerary tailored to your budget and interests.
         </p>
         <Button
+          onClick={() => navigate("/create-trip")}
           className={
             "group relative inline-flexCenter px-8! py-8! text-lg font-bold text-white transition-all duration-200 bg-indigo-600 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-700 hover:scale-105 shadow-xl"
           }

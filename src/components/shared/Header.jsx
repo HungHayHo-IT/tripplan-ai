@@ -15,12 +15,12 @@ const Header = () => {
       <div className="flex gap-x-4 sm:gap-x-8">
         <Button variant="outline" className={"mt-1 bg-transparent"}>
           <Plus />
-          Create Trip
+          Tạo chuyến di
         </Button>
         <div className="flex mt-1">
           <Button variant="destructive" className={"px-5!"}>
             <User />
-            Login
+            Đăng nhập
           </Button>
         </div>
       </div>
