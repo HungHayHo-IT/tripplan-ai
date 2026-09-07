@@ -6,7 +6,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { usegoogleAuth } from "../../services/authApi";
+import { useGoogleAuth } from "../../services/authApi";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
@@ -14,7 +14,7 @@ import { Input } from "../ui/input";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginDialog = ({ open, onClose, onLoginSuccess }) => {
-  const handleLogin = usegoogleAuth({
+  const handleLogin = useGoogleAuth({
     onSuccess: () => {
       onClose();
       onLoginSuccess?.();
