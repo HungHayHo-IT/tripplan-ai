@@ -1,10 +1,6 @@
-import * as React from "react"
-import { cn } from "cn"
+import { cn } from "cn";
 
-function Label({
-  className,
-  ...props
-}) {
+function Label({ className, ...props }) {
   return (
     <label
       data-slot="label"
@@ -14,7 +10,7 @@ function Label({
       )}
       {...props}
     />
-  )
+  );
 }
 
-export { Label }
+export { Label };

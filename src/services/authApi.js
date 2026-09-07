@@ -10,7 +10,8 @@ export const fetchUserProfile = (accessToken) => {
   });
 };
 
-export const usegoogleAuth = ({ onSuccess }) => {
+// usegoogleAuth hook
+export const useGoogleAuth = ({ onSuccess }) => {
   return useGoogleLogin({
     onSuccess: async (codeResponse) => {
       const res = await fetchUserProfile(codeResponse.access_token);

@@ -63,7 +63,7 @@ const LoginDialog = ({ open, onClose, onLoginSuccess }) => {
           <Button
             onClick={handleLogin}
             type="submit"
-            className="w-full rounded-md border border-gray-300 bg-white text-gray-700 
+            className="w-full rounded-md border border-gray-300 bg-white text-gray-700
                  flex items-center justify-center gap-3 py-2.5
                  font-medium shadow-sm
                  hover:bg-gray-50 hover:shadow-md
