@@ -3,8 +3,10 @@ import { useState } from "react";
 import { BUDGET_OPTIONS, TRAVELER_OPTIONS } from "../assets/data";
 import { toast } from "sonner";
 import { generateTripWithAI } from "../services/aiModel";
+import LoginDialog from "../components/shared/LoginDialog";
 const CreateTrip = () => {
   const [step, setStep] = useState(3);
+  const [openDialog, setOpenDialog] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     destination: "",
@@ -28,6 +30,11 @@ const CreateTrip = () => {
   };
 
   const generateTrip = async () => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      return setOpenDialog(true);
+    }
+
     if (
       !formData.destination ||
       !formData.noOfDays ||
@@ -253,6 +260,11 @@ const CreateTrip = () => {
           </div>
         </div>
       </div>
+      <LoginDialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        onLoginSuccess={generateTrip}
+      />
     </div>
   );
 };
